@@ -1,17 +1,14 @@
+<p>
+  <a href="#/">Go back to search</a>
+</p>
 Forecast {{city}}
-
+<hr/>
+Days: <a href="#/forecast/1" ng-class="{'bg-primary': days === '1'}">1</a> | <a href="#/forecast/3" ng-class="{'bg-primary': days === '3'}">3</a>
+<hr/>
 <div ng-repeat="w in weatherResult.list">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="panel-title">{{ convertToDate(w.dt) | date: 'MMM d, y';}}</div>
-        </div>
-        <div class="panel-body">
-          DayTime {{convertToFahrenheit(w.main.temp);}}
-        </div>
-      </div>
+      <weather-report weather-day="w" convert-to-standard="convertToFahrenheit(daytimeTemp)" convert-to-date="convertToDate(dt)" date-format="MMM d, y">
     </div>
   </div>
 </div>
-  

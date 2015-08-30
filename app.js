@@ -6,7 +6,7 @@ weatherApp.config(function($routeProvider){
   $routeProvider
 
   .when('/', {
-    templateUrl: 'pages/home.htm',
+    templateUrl: 'pages/home.html',
     controller: 'homeController'
   })
 
@@ -36,7 +36,7 @@ function($scope, cityService){
   });
 }]);
 
-weatherApp.controller('forecastController',['$scope', '$resource', '$routeParams','cityService',
+weatherApp.controller('forecastController',['$scope', '$resource', '$routeParams','cityService', 
 function($scope, $resource, $routeParams, cityService){
   $scope.city = cityService.city;
   $scope.days = $routeParams.days || 2; 
@@ -54,3 +54,18 @@ function($scope, $resource, $routeParams, cityService){
   };
   console.log($scope.weatherResult);
 }]);
+
+// Directive
+weatherApp.directive('weatherReport', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'directives/weatherReport.html',
+    replace: true,
+    scope: {
+      weatherDay: '=',
+      convertToStandard: '&',
+      convertToDate: "&",
+      dateFormat: "@"
+    }
+  };
+});
